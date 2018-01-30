@@ -1,12 +1,3 @@
-
-const isNumber = num => Number(num) === num;
-
-const clearString = (str) => {
-  const onlyNumbers = str.replace(/[\D]+/g, '');
-  
-  return onlyNumbers === '' ? clearString((0.0).toFixed(options.decimalScale)) : onlyNumbers;
-}
-
 export const maskMoney = (locale = 'pt-BR', option) => {
   
   const localesDefault = {
@@ -29,19 +20,35 @@ export const maskMoney = (locale = 'pt-BR', option) => {
     ...option
   };
 
+  const initValue = (0.0).toFixed(options.decimalScale);
+  
+  const isNumber = num => Number(num) === num;
+  
+  const isValidStr = str => str.length >= options.decimalScale;
+  
+  const joinString = str => `${str.substr(0, str.length - options.decimalScale)}.${str.substr(options.decimalScale * (-1))}`;
+  
+  const transformStr = str => parseInt(str) ? parseInt(str) / Math.pow(10, options.decimalScale) : parseFloat(initValue);
+  
+  const clearString = (str) => {
+    const onlyNumbers = str.replace(/[\D]+/g, '');
+
+    if (!isValidStr(onlyNumbers) && transformStr(onlyNumbers)) {
+      return clearString(transformStr(onlyNumbers).toString());
+    }
+    return !!onlyNumbers ? onlyNumbers : clearString(initValue);
+  }
+
   return {
-    numberToString = (num) => {
-      const numberFormat = isNumber(num) ? clearString(num.toFixed(options.decimalScale)) : clearString(num);
-      const strMoney = `${numberFormat.substr(0, numberFormat.length - options.decimalScale)}.${numberFormat.substr(options.decimalScale * (-1))}`;
-      let floatValue = strMoney.split('.');
+    numberToString: (num) => {
+      const number = clearString( isNumber(num) ? num.toFixed( options.decimalScale ) : num );
       
-      floatValue[0] = floatValue[0].split(/(?=(?:...)*$)/).join(options.charThousands);
-      return `${options.symbol} ${floatValue.join(options.charDecimal)}`;
+      const formatNumber = joinString( number ).split('.');
+      formatNumber[0] = formatNumber[0].split(/(?=(?:...)*$)/).join( options.charThousands );
+      
+      return `${options.symbol} ${formatNumber.join(options.charDecimal)}`;
     },
 
-    stringToNumber = (str) => {
-      const strFormat = clearString(str);
-      return parseFloat(`${strFormat.substr(0, strFormat.length - options.decimalScale)}.${strFormat.substr(options.decimalScale * (-1))}`);
-    }
+    stringToNumber: str => parseFloat( joinString( clearString( str ) ) ),
   };
 }
