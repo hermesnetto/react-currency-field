@@ -1,23 +1,27 @@
-const inputValue = 223.4;
-const locale = 'pt-BR';
-const option = null;
+export default class MaskMoney {
+  
+  static LOCALES = {
+    'pt-BR': {
+      charThousands: '.',
+      charDecimal: ',',
+      symbol: 'R$',
+      decimalScale: 2
+    },
+    'en-US': {
+      charThousands: ',',
+      charDecimal: '.',
+      symbol: 'US$',
+      decimalScale: 2
+    },
+  };
 
-// ------------------------------------------------------ // 
+  OPTION;
 
-const locales = {
-  'pt-BR': {
-    charThousands: '.',
-    charDecimal: ',',
-    symbol: 'R$',
-    decimalScale: 2
-  },
-  'en-US': {
-    charThousands: ',',
-    charDecimal: '.',
-    symbol: 'US$',
-    decimalScale: 2
-  },
-};
+  constructor (locale = 'pt-BR', option = {}) {
+    
+  }
+
+}
 
 const options = {
   charThousands: '.',
@@ -27,16 +31,12 @@ const options = {
 };
 
 const stringToNumber = (str) => {
-  const strValue = str.replace(/[^0-9,.]+/g, '');
-  
-  if (locales[locale].charDecimal === ',') {
-      return parseFloat(strValue.replace(',', '.').replace('.', ''));
-  }
-  return parseFloat(strValue.replace(',', ''));
+  return str.replace(/[\D]+/g, '');
 };
 
 const numberToString = (num) => {
-  let floatValue = num.toFixed(locales[locale].decimalScale).split('.');
+  const floatNumber = `${num.substr(0, num.length - locales[locale].decimalScale)}.${num.substr(locales[locale].decimalScale * (-1))}`;
+  let floatValue = floatNumber.split('.');
   
   floatValue[0] = floatValue[0].split(/(?=(?:...)*$)/).join(locales[locale].charThousands);
   return floatValue.join(locales[locale].charDecimal);
