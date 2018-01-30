@@ -8,7 +8,7 @@ yarn add currency-react-input
 ```
 
 ## How to use
-```
+```javascript
   import CurrencyInput from 'currency-react-input';
 
   <CurrencyInput
@@ -27,7 +27,7 @@ yarn add currency-react-input
 |-----:|:----:|:----:|:----|
 | value | number | 0 | - |
 | onChange | function |  | - |
-| locale | string | 'en-US' | - |
+| locale | string | en-US | - |
 
 
 ---------------------------------
