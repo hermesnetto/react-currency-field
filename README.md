@@ -1,15 +1,11 @@
 ## React Currency Input
 
-⚛️ 📄 🚀 A smaller and simple component to currency in react.
-
----------------------------------
+⚛️ A small and simple component to currency in react.
 
 ## How to install
 ```
 yarn add currency-react-input
 ```
-
----------------------------------
 
 ## How to use
 ```
@@ -26,8 +22,6 @@ yarn add currency-react-input
   />
 ```
 
----------------------------------
-
 ## Props
 | Prop | Type | Default | Description |
 |-----:|:----:|:----:|:----|
@@ -38,4 +32,4 @@ yarn add currency-react-input
 
 ---------------------------------
 
-Contribution are welcome
+#### Contributions are welcome!
