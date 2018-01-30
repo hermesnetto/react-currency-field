@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { numberToString, stringToNumber } from './maskMoney';
 
 class CurrencyInput extends Component {
 	static propTypes = {
 		value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		name: PropTypes.string,
 		onChange: PropTypes.func,
+		className: PropTypes.string,
+		placeholder: PropTypes.string,
+		disabled: PropTypes.bool,
+		required: PropTypes.bool,
+		style: PropTypes.object,
 	};
 
-	formatPrice = value => {
+	formatMoney = value => {
 		return {
-			floatValue: 0,
-			formatedValue: '',
+			floatValue: stringToNumber(value),
+			formatedValue: numberToString(value),
 		};
 	};
 
 	handleChange = e => {
-		const { onChange } = this.props;
-		onChange && onChange(e, this.formatPrice(e.target.value));
+		this.props.onChange &&
+			this.props.onChange(e, this.formatMoney(e.target.value));
 	};
 
 	getProps = () => {
-		const { props } = this;
+		const { value, onChange, ...input } = this.props;
 
 		return {
-			value: props.value,
+			...input,
+			value: numberToString(value),
 			onChange: this.handleChange,
 			type: 'text',
 		};
