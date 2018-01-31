@@ -19,6 +19,7 @@ class Example extends Component {
 		return (
 			<div style={styles}>
 				<CurrencyInput
+					locale="pt-BR"
 					value={this.state.value}
 					onChange={(e, values) => {
 						this.setState({ value: values.floatValue });

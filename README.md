@@ -1,5 +1,3 @@
-# *** Work In Progress !!! ***
-
 ## React Currency Input
 
 ⚛️ A small and simple component to currency in react.

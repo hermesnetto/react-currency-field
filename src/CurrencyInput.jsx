@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { numberToString, stringToNumber } from './maskMoney';
+import maskMoney from './maskMoney';
 
 class CurrencyInput extends Component {
 	static propTypes = {
@@ -12,12 +12,25 @@ class CurrencyInput extends Component {
 		disabled: PropTypes.bool,
 		required: PropTypes.bool,
 		style: PropTypes.object,
+		locale: PropTypes.string,
+		options: PropTypes.shape({
+			charThousands: PropTypes.string,
+			charDecimal: PropTypes.string,
+			symbol: PropTypes.string,
+			decimalScale: PropTypes.number,
+		}),
 	};
+
+	static defaultProps = {
+		locale: 'en-US',
+	};
+
+	mask = maskMoney(this.props.locale, this.props.options);
 
 	formatMoney = value => {
 		return {
-			floatValue: stringToNumber(value),
-			formatedValue: numberToString(value),
+			floatValue: this.mask.stringToNumber(value),
+			formatedValue: this.mask.numberToString(value),
 		};
 	};
 
@@ -31,7 +44,7 @@ class CurrencyInput extends Component {
 
 		return {
 			...input,
-			value: numberToString(value),
+			value: this.mask.numberToString(value),
 			onChange: this.handleChange,
 			type: 'text',
 		};
