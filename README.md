@@ -4,14 +4,14 @@
 
 ## How to install
 ```
-yarn add currency-react-input
+yarn add react-currency-field
 ```
 
 ## How to use
 ```javascript
-  import CurrencyInput from 'currency-react-input';
+  import ReactCurrencyInput from 'react-currency-field';
 
-  <CurrencyInput
+  <ReactCurrencyInput
     locale="en-US"
     value={this.state.value}
     onChange={(event, values) => {
