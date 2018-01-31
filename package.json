@@ -1,6 +1,7 @@
 {
   "name": "react-currency-field",
   "version": "0.1.0",
+  "main": "lib/CurrencyInput.js",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
