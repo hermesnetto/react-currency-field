@@ -13,5 +13,9 @@
     "build": "rm -rf lib/ && babel src/ --out-dir lib/ --ignore **/__test__,**/__mocks__",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
