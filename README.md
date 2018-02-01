@@ -1,6 +1,6 @@
-## React Currency Input
+## React Currency Field
 
-⚛️ A small and simple component to currency in react.
+⚛️  A simple and small component to currency in react.
 
 ## How to install
 ```
@@ -25,9 +25,9 @@ yarn add react-currency-field
 ## Props
 | Prop | Type | Default | Description |
 |-----:|:----:|:----:|:----|
-| value | number | 0 | - |
-| onChange | function |  | - |
-| locale | string | en-US | - |
+| value | number | 0.0 | - |
+| onChange | function(event, value: { formatedValue, floatValue }) |  | - |
+| locale | string | en-US | one of `en-US | pt-BR` |
 
 
 ---------------------------------
