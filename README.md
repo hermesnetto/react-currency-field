@@ -27,7 +27,7 @@ yarn add react-currency-field
 |-----:|:----:|:----:|:----|
 | value | number | 0.0 | - |
 | onChange | function(event, value: { formatedValue, floatValue }) |  | - |
-| locale | string | en-US | one of `en-US | pt-BR` |
+| locale | string | en-US | one of (`en-US or pt-BR`) |
 
 
 ---------------------------------
