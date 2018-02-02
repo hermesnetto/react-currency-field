@@ -1,6 +1,6 @@
 ## React Currency Field
 
-⚛️  A simple and small component to currency in react.
+A simple and small component to currency in react.
 
 ## How to install
 ```
