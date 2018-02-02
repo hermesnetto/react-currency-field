@@ -2,6 +2,7 @@
   "name": "react-currency-field",
   "version": "0.1.1",
   "main": "lib/CurrencyInput.js",
+  "url": "https://github.com/hermesnetto/react-currency-field",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
