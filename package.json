@@ -1,22 +1,29 @@
 {
   "name": "react-currency-field",
   "version": "0.1.2",
-  "main": "lib/CurrencyInput.js",
+  "main": "lib/CurrencyField/index.js",
   "url": "https://github.com/hermesnetto/react-currency-field",
+  "licence": "todo",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rm -rf lib/ && babel src/ --out-dir lib/ --ignore **/__test__,**/__mocks__",
+    "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
-    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf lib/ && babel src/ --out-dir lib/ --ignore **/__test__,**/__mocks__",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-core": "^6.26.3",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "flow-bin": "0.71.0",
+    "react-test-renderer": "^16.3.2",
+    "regenerator-runtime": "^0.11.1"
   }
 }
