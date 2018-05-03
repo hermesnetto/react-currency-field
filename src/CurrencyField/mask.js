@@ -1,23 +1,13 @@
-const maskMoney = (locale = 'pt-BR', option) => {
-  const localesDefault = {
-    'pt-BR': {
-      charThousands: '.',
-      charDecimal: ',',
-      symbol: 'R$',
-      decimalScale: 2,
-    },
-    'en-US': {
-      charThousands: ',',
-      charDecimal: '.',
-      symbol: 'US$',
-      decimalScale: 2,
-    },
-  };
+import { defaultLocale, locales } from './locales';
 
-  const options = {
-    ...localesDefault[locale],
-    ...option,
-  };
+const mask = locale => {
+  let options = locales[defaultLocale];
+
+  if (typeof locale === 'string' && locales.hasOwnProperty(locale)) {
+    options = locales[locale];
+  } else if (typeof locale === 'object') {
+    options = locale;
+  }
 
   const initValue = (0.0).toFixed(options.decimalScale);
 
@@ -62,4 +52,4 @@ const maskMoney = (locale = 'pt-BR', option) => {
   };
 };
 
-export default maskMoney;
+export default mask;

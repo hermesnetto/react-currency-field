@@ -1,6 +1,6 @@
 ## React Currency Field
 
-A simple and small component to currency in react.
+A simple and small component to handle currency in react.
 
 ## How to install
 ```
@@ -27,7 +27,17 @@ yarn add react-currency-field
 |-----:|:----:|:----:|:----|
 | value | number | 0.0 | - |
 | onChange | function(event, value: { formatedValue, floatValue }) |  | - |
-| locale | string | en-US | one of (`en-US or pt-BR`) |
+| locale | string or object | en-US | a string (pt-BR or en-US) or a config object |
+
+## Locale Config
+```javascript
+  {
+    charThousands: ',',
+    charDecimal: '.',
+    symbol: '$',
+    decimalScale: 2,
+  }
+```
 
 
 ---------------------------------

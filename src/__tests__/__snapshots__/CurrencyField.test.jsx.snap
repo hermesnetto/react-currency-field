@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Currency Field Tests Default Tests should match the default snapshot 1`] = `
+<input
+  onChange={[Function]}
+  type="text"
+  value="$ 0.00"
+/>
+`;
