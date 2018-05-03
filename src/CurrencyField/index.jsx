@@ -1,10 +1,8 @@
 // @flow
 import * as React from 'react';
 import moneyMask from './mask';
-import type { Props, Values } from './types';
+import type { Props, Values, Mask } from './types';
 import { defaultLocale } from './locales';
-
-let mask;
 
 class CurrencyField extends React.Component<Props> {
   static defaultProps = {
@@ -14,12 +12,14 @@ class CurrencyField extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    mask = moneyMask(this.props.locale);
+    this.mask = moneyMask(this.props.locale);
   }
 
+  mask: Mask;
+
   formatValue = (value: string): Values => ({
-    floatValue: mask.stringToNumber(value),
-    formatedValue: mask.numberToString(value),
+    floatValue: this.mask.stringToNumber(value),
+    formatedValue: this.mask.numberToString(value),
   });
 
   handleChange = (e: SyntheticEvent<HTMLInputElement>): void => {
@@ -34,7 +34,7 @@ class CurrencyField extends React.Component<Props> {
 
     return {
       ...input,
-      value: mask.numberToString(value),
+      value: this.mask.numberToString(value),
       onChange: this.handleChange,
       type: 'text',
     };

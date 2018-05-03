@@ -1,6 +1,11 @@
 // @flow
 import * as React from 'react';
 
+export type Mask = {
+  numberToString: (num: string | number) => string,
+  stringToNumber: (str: string) => number,
+};
+
 export type Values = {
   floatValue: number,
   formatedValue: string,
