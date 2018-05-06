@@ -135,4 +135,40 @@ describe('Currency Field Tests', () => {
       simulate(2456.1, '# 2-456_10', customLocale);
     });
   });
+
+  describe('Tests of the mask with a custom locale config', () => {
+    it('Type `22.3` and expect the value to be `# 22_30`', () => {
+      simulate(22.3, '# 22_30', customLocale);
+    });
+
+    it('Type `2456.1` and expect the value to be `# 2-456_10`', () => {
+      simulate(2456.1, '# 2-456_10', customLocale);
+    });
+  });
+
+  describe('Tests of the mask passing a string', () => {
+    it('Type `$ 12,455.30` and expect the value to be `$ 12,455.30`', () => {
+      simulate('$ 12,455.30', '$ 12,455.30');
+    });
+
+    it('Type `12455.30` and expect the value to be `$ 12,455.30`', () => {
+      simulate('12455.30', '$ 12,455.30');
+    });
+
+    it('Type `125.51` and expect the value to be `$ 125.51`', () => {
+      simulate('125.51', '$ 125.51');
+    });
+
+    it('Type `40` and expect the value to be `$ 40.00`', () => {
+      simulate('40', '$ 40.00');
+    });
+
+    it('Type `0.05` and expect the value to be `$ 00.05`', () => {
+      simulate('0.05', '$ 0.05');
+    });
+
+    it('Type `8` and expect the value to be `$ 8.00`', () => {
+      simulate('8', '$ 8.00');
+    });
+  });
 });
