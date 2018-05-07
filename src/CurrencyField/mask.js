@@ -13,10 +13,10 @@ const mask = locale => {
 
   const isNumber = num => Number(num) === num;
 
-  const isValidStr = str => str.length > options.decimalScale;
+  const isValidStr = str => str.length >= options.decimalScale;
 
   const joinString = str =>
-    `${str.substr(0, str.length - options.decimalScale)}.${str.substr(
+    `${str.substr(0, str.length - options.decimalScale) || `0`}.${str.substr(
       options.decimalScale * -1
     )}`;
 

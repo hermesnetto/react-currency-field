@@ -159,16 +159,16 @@ describe('Currency Field Tests', () => {
       simulate('125.51', '$ 125.51');
     });
 
-    it('Type `40` and expect the value to be `$ 40.00`', () => {
-      simulate('40', '$ 40.00');
+    it('Type `40` and expect the value to be `$ 0.40`', () => {
+      simulate('40', '$ 0.40');
     });
 
     it('Type `0.05` and expect the value to be `$ 00.05`', () => {
       simulate('0.05', '$ 0.05');
     });
 
-    it('Type `8` and expect the value to be `$ 8.00`', () => {
-      simulate('8', '$ 8.00');
+    it('Type `8` and expect the value to be `$ 0.08`', () => {
+      simulate('8', '$ 0.08');
     });
   });
 });
