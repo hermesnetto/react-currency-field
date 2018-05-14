@@ -171,4 +171,26 @@ describe('Currency Field Tests', () => {
       simulate('8', '$ 0.08');
     });
   });
+
+  describe('Tests of the mask passing a number negative', () => {
+    it('Type `$ -12,455.30` and expect the value to be `$ -12,455.30`', () => {
+      simulate('$ -12,455.30', '$ -12,455.30');
+    });
+
+    it('Type `-12455.30` and expect the value to be `$ -12,455.30`', () => {
+      simulate('-12455.30', '$ -12,455.30');
+    });
+
+    it('Type -125.51 and expect the value to be `$ -125.51`', () => {
+      simulate(-125.51, '$ -125.51');
+    });
+
+    it('Type `-40-` and expect the value to be `$ -0.40`', () => {
+      simulate('-40-', '$ 0.40');
+    });
+
+    it('Type -8 and expect the value to be `$ -8.00`', () => {
+      simulate(-8, '$ -8.00');
+    });
+  });
 });

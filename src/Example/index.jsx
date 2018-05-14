@@ -18,7 +18,7 @@ class Example extends Component {
     super(props);
 
     this.state = {
-      value: 22.35,
+      value: -22.35,
     };
   }
 

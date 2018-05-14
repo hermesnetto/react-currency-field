@@ -9,46 +9,59 @@ const mask = locale => {
     options = locale;
   }
 
-  const initValue = (0.0).toFixed(options.decimalScale);
+  const defaultValue = (0.0).toFixed(options.decimalScale);
 
   const isNumber = num => Number(num) === num;
 
-  const isValidStr = str => str.length >= options.decimalScale;
+  const negativeNumber = value =>
+    isNumber(value)
+      ? value < 0
+      : !!(
+          (
+            value
+              .replace(new RegExp(`[R$]+`, `g`), ``)
+              .match(/^[\s]*-{1}|[?=.*-]$/g) || []
+          ).length % 2
+        );
 
-  const joinString = str =>
+  const transformNumber = str =>
     `${str.substr(0, str.length - options.decimalScale) || `0`}.${str.substr(
       options.decimalScale * -1
     )}`;
 
   const transformStr = str =>
-    parseInt(str)
-      ? parseInt(str) / Math.pow(10, options.decimalScale)
-      : parseFloat(initValue);
+    Number(str)
+      ? Number(str) / Math.pow(10, options.decimalScale)
+      : Number(defaultValue);
 
-  const clearString = str => {
-    const onlyNumbers = str.replace(/[\D]+/g, '');
-
-    if (!isValidStr(onlyNumbers) && transformStr(onlyNumbers)) {
-      return clearString(transformStr(onlyNumbers).toString());
-    }
-    return !!onlyNumbers ? onlyNumbers : clearString(initValue);
-  };
+  const onlyNumbers = str =>
+    transformStr(str.replace(/[\D]+/g, ``))
+      .toFixed(options.decimalScale)
+      .replace(/[\D]+/g, ``);
 
   return {
     numberToString: num => {
-      const number = clearString(
+      const signal = negativeNumber(num) ? `-` : ``;
+
+      const number = onlyNumbers(
         isNumber(num) ? num.toFixed(options.decimalScale) : num
       );
 
-      const formatNumber = joinString(number).split('.');
+      const formatNumber = transformNumber(number).split('.');
       formatNumber[0] = formatNumber[0]
         .split(/(?=(?:...)*$)/)
         .join(options.charThousands);
 
-      return `${options.symbol} ${formatNumber.join(options.charDecimal)}`;
+      return `${options.symbol} ${signal}${formatNumber.join(
+        options.charDecimal
+      )}`;
     },
 
-    stringToNumber: str => parseFloat(joinString(clearString(str))),
+    stringToNumber: str => {
+      const negative = negativeNumber(str) ? -1 : 1;
+
+      return Number(transformNumber(onlyNumbers(str))) * negative;
+    },
   };
 };
 
